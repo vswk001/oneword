@@ -65,9 +65,7 @@ curl -fsSL https://raw.githubusercontent.com/vswk001/oneword/main/install.sh | b
 **Windows (PowerShell):**
 
 ```powershell
-git clone https://github.com/vswk001/oneword.git
-cd oneword
-bash install.sh
+iwr https://raw.githubusercontent.com/vswk001/oneword/main/install.ps1 | iex
 ```
 
 **Manual platform selection:**
