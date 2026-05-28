@@ -1,7 +1,5 @@
 $ErrorActionPreference = "Stop"
 
-$ONEWORD_ROOT = Split-Path -Parent $MyInvocation.MyCommand.Path
-
 function Detect-Platform {
     if (Get-Command claude -ErrorAction SilentlyContinue) { return "claude-code" }
     if (Get-Command codex -ErrorAction SilentlyContinue) { return "codex" }
@@ -26,6 +24,15 @@ if ([string]::IsNullOrEmpty($Platform)) {
     Write-Host "  .\install.ps1 --platform cursor"
     Write-Host "  .\install.ps1 --platform opencode"
     exit 1
+}
+
+# Clone repo to temp dir if running via iwr | iex (no script file path)
+$ONEWORD_ROOT = Split-Path -Parent $MyInvocation.MyCommand.Path
+if ([string]::IsNullOrEmpty($ONEWORD_ROOT) -or -not (Test-Path "$ONEWORD_ROOT\skills")) {
+    $TempDir = Join-Path $env:TEMP "oneword-install"
+    if (Test-Path $TempDir) { Remove-Item -Recurse -Force $TempDir }
+    git clone https://github.com/vswk001/oneword.git $TempDir
+    $ONEWORD_ROOT = $TempDir
 }
 
 Write-Host "Installing OneWord for $Platform..." -ForegroundColor Green

@@ -34,9 +34,9 @@ Write to the project root `README.md`:
 ## How to Start
 
 1. Open your terminal in this folder
-2. Run: `npm install`
-3. Run: `npm start`
-4. Open your browser and go to: http://localhost:3000
+2. Run: [install command — read from tech-stack.md: `npm install` or `pip install -r requirements.txt`]
+3. Run: [start command — read from tech-stack.md: `npm start` or `python src/main.py` etc.]
+4. Open your browser and go to: [URL from tech-stack.md, default http://localhost:3000]
 
 ## Features
 
@@ -59,6 +59,6 @@ Print this message to the terminal (the user will see this):
 
 ```
 Your [app name] is ready!
-Run `npm install && npm start` to launch it.
-Then open http://localhost:3000 in your browser.
+Run [start command from tech-stack.md] to launch it.
+Then open [URL] in your browser.
 ```
