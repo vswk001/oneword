@@ -58,16 +58,16 @@ OneWord 在幕后运行一整套**专业软件工程流水线**——需求分�
 **一行命令安装（推荐）：**
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/vswk001/oneword/master/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/vswk001/oneword/main/install.sh | bash
 ```
 
 **手动选择平台：**
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/vswk001/oneword/master/install.sh | bash -s -- --platform claude-code
-curl -fsSL https://raw.githubusercontent.com/vswk001/oneword/master/install.sh | bash -s -- --platform codex
-curl -fsSL https://raw.githubusercontent.com/vswk001/oneword/master/install.sh | bash -s -- --platform cursor
-curl -fsSL https://raw.githubusercontent.com/vswk001/oneword/master/install.sh | bash -s -- --platform opencode
+curl -fsSL https://raw.githubusercontent.com/vswk001/oneword/main/install.sh | bash -s -- --platform claude-code
+curl -fsSL https://raw.githubusercontent.com/vswk001/oneword/main/install.sh | bash -s -- --platform codex
+curl -fsSL https://raw.githubusercontent.com/vswk001/oneword/main/install.sh | bash -s -- --platform cursor
+curl -fsSL https://raw.githubusercontent.com/vswk001/oneword/main/install.sh | bash -s -- --platform opencode
 ```
 
 **从源码安装：**
