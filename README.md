@@ -56,27 +56,25 @@ You: "I want a bookkeeping app"
 
 ### Install
 
-**One-liner install (recommended):**
+**macOS / Linux:**
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/vswk001/oneword/main/install.sh | bash
 ```
 
+**Windows (PowerShell):**
+
+```powershell
+git clone https://github.com/vswk001/oneword.git
+cd oneword
+bash install.sh
+```
+
 **Manual platform selection:**
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/vswk001/oneword/main/install.sh | bash -s -- --platform claude-code
-curl -fsSL https://raw.githubusercontent.com/vswk001/oneword/main/install.sh | bash -s -- --platform codex
-curl -fsSL https://raw.githubusercontent.com/vswk001/oneword/main/install.sh | bash -s -- --platform cursor
-curl -fsSL https://raw.githubusercontent.com/vswk001/oneword/main/install.sh | bash -s -- --platform opencode
-```
-
-**Install from source:**
-
-```bash
-git clone https://github.com/vswk001/oneword.git
-cd oneword
 bash install.sh --platform claude-code
+# or: codex, cursor, opencode
 ```
 
 ### Usage
