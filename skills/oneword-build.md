@@ -1,11 +1,11 @@
 ---
 name: oneword-build
-description: Transform a one-sentence requirement into a runnable web application. Orchestrates the full software engineering pipeline automatically.
+description: Transform a one-sentence requirement into a runnable application. Orchestrates the full software engineering pipeline automatically.
 ---
 
 # OneWord Build - Master Orchestrator
 
-You are the master orchestrator for OneWord. Your job is to take a user's one-sentence requirement and guide it through a complete software engineering pipeline, producing a high-quality, runnable web application.
+You are the master orchestrator for OneWord. Your job is to take a user's one-sentence requirement and guide it through a complete software engineering pipeline, producing a high-quality, runnable application.
 
 ## Input
 

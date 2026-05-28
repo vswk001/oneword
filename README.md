@@ -6,7 +6,7 @@
 
 **One sentence to a running application.**
 
-Transform a single sentence into a high-quality, runnable web application — no technical knowledge required.
+Transform a single sentence into a high-quality, runnable application — no technical knowledge required.
 
 [Getting Started](#getting-started) · [How It Works](#how-it-works) · [Supported Platforms](#supported-platforms) · [Roadmap](#roadmap) · [Contributing](#contributing)
 
@@ -42,7 +42,7 @@ You: "I want a bookkeeping app"
     └───────────────┬───────────────┘
                     │
                     ▼
-        A running web application
+        A running application
         with tests, clean code,
         and a README
 ```
@@ -112,7 +112,7 @@ OneWord analyzes your requirement and automatically picks the best technology:
 
 | Requirement Type    | Stack                        | Template           |
 | ------------------- | ---------------------------- | ------------------ |
-| General web apps    | React + Node.js + TypeScript | `react-node`       |
+| General apps        | React + Node.js + TypeScript | `react-node`       |
 | Real-time, SEO, SSR | Next.js 15 + TypeScript      | `nextjs-fullstack` |
 | Data analysis, AI   | Vue 3 + Python FastAPI       | `vue-python`       |
 | Lightweight tools   | React + Flask                | `react-flask`      |

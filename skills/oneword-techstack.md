@@ -17,7 +17,7 @@ Read `.oneword/requirements.md`.
 - Default to mature, well-documented technologies with large ecosystems.
 - Only choose complex technologies when requirements explicitly demand them.
 - The selected template MUST exist in the `templates/` directory. Available templates:
-  - `react-node`: React + Node.js/Express + TypeScript (default for most web apps)
+  - `react-node`: React + Node.js/Express + TypeScript (default for most apps)
   - `nextjs-fullstack`: Next.js full-stack (for SEO, SSR, real-time features)
   - `vue-python`: Vue.js + Python/FastAPI (for data-heavy, AI-related apps)
   - `react-flask`: React + Flask (for lightweight API + frontend)
@@ -29,7 +29,7 @@ Match requirement keywords against these patterns:
 - Real-time / chat / notification / live updates → `nextjs-fullstack`
 - Data analysis / report / machine learning / AI → `vue-python`
 - Lightweight / simple API / microservice → `react-flask`
-- General web app (default) → `react-node`
+- General app (default) → `react-node`
 
 ## Output
 
