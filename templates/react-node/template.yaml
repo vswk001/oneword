@@ -1,0 +1,23 @@
+name: react-node
+display: "React + Node.js"
+description: "Modern full-stack web application with separated frontend and backend"
+suitable_for:
+  - "Web apps with rich user interaction"
+  - "RESTful API services"
+  - "Small to medium management systems"
+  - "CRUD applications"
+tech:
+  frontend: React + TypeScript + Tailwind CSS
+  backend: Node.js + Express + TypeScript
+  database: SQLite (development)
+  orm: Prisma
+  testing: Jest + Playwright
+  build: Vite
+  lint: ESLint + Prettier
+commands:
+  install: npm install
+  dev: npm run dev
+  build: npm run build
+  test: npm test
+  lint: npm run lint
+  start: npm start
