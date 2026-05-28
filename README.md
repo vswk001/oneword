@@ -59,22 +59,22 @@ You: "I want a bookkeeping app"
 **One-liner install (recommended):**
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/oneword-dev/oneword/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/vswk001/oneword/main/install.sh | bash
 ```
 
 **Manual platform selection:**
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/oneword-dev/oneword/main/install.sh | bash -s -- --platform claude-code
-curl -fsSL https://raw.githubusercontent.com/oneword-dev/oneword/main/install.sh | bash -s -- --platform codex
-curl -fsSL https://raw.githubusercontent.com/oneword-dev/oneword/main/install.sh | bash -s -- --platform cursor
-curl -fsSL https://raw.githubusercontent.com/oneword-dev/oneword/main/install.sh | bash -s -- --platform opencode
+curl -fsSL https://raw.githubusercontent.com/vswk001/oneword/main/install.sh | bash -s -- --platform claude-code
+curl -fsSL https://raw.githubusercontent.com/vswk001/oneword/main/install.sh | bash -s -- --platform codex
+curl -fsSL https://raw.githubusercontent.com/vswk001/oneword/main/install.sh | bash -s -- --platform cursor
+curl -fsSL https://raw.githubusercontent.com/vswk001/oneword/main/install.sh | bash -s -- --platform opencode
 ```
 
 **Install from source:**
 
 ```bash
-git clone https://github.com/oneword-dev/oneword.git
+git clone https://github.com/vswk001/oneword.git
 cd oneword
 bash install.sh --platform claude-code
 ```
@@ -190,6 +190,6 @@ Built for the AI coding community. Inspired by the idea that everyone deserves t
 
 <div align="center">
 
-**[Report Bug](https://github.com/oneword-dev/oneword/issues) · [Request Feature](https://github.com/oneword-dev/oneword/issues) · [Discussions](https://github.com/oneword-dev/oneword/discussions)**
+**[Report Bug](https://github.com/vswk001/oneword/issues) · [Request Feature](https://github.com/vswk001/oneword/issues) · [Discussions](https://github.com/vswk001/oneword/discussions)**
 
 </div>

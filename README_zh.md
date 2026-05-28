@@ -58,22 +58,22 @@ OneWord 在幕后运行一整套**专业软件工程流水线**——需求分�
 **一行命令安装（推荐）：**
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/oneword-dev/oneword/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/vswk001/oneword/main/install.sh | bash
 ```
 
 **手动选择平台：**
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/oneword-dev/oneword/main/install.sh | bash -s -- --platform claude-code
-curl -fsSL https://raw.githubusercontent.com/oneword-dev/oneword/main/install.sh | bash -s -- --platform codex
-curl -fsSL https://raw.githubusercontent.com/oneword-dev/oneword/main/install.sh | bash -s -- --platform cursor
-curl -fsSL https://raw.githubusercontent.com/oneword-dev/oneword/main/install.sh | bash -s -- --platform opencode
+curl -fsSL https://raw.githubusercontent.com/vswk001/oneword/main/install.sh | bash -s -- --platform claude-code
+curl -fsSL https://raw.githubusercontent.com/vswk001/oneword/main/install.sh | bash -s -- --platform codex
+curl -fsSL https://raw.githubusercontent.com/vswk001/oneword/main/install.sh | bash -s -- --platform cursor
+curl -fsSL https://raw.githubusercontent.com/vswk001/oneword/main/install.sh | bash -s -- --platform opencode
 ```
 
 **从源码安装：**
 
 ```bash
-git clone https://github.com/oneword-dev/oneword.git
+git clone https://github.com/vswk001/oneword.git
 cd oneword
 bash install.sh --platform claude-code
 ```
@@ -189,6 +189,6 @@ OneWord 采用 [MIT 许可证](LICENSE) 开源。
 
 <div align="center">
 
-**[报告问题](https://github.com/oneword-dev/oneword/issues) · [功能建议](https://github.com/oneword-dev/oneword/issues) · [社区讨论](https://github.com/oneword-dev/oneword/discussions)**
+**[报告问题](https://github.com/vswk001/oneword/issues) · [功能建议](https://github.com/vswk001/oneword/issues) · [社区讨论](https://github.com/vswk001/oneword/discussions)**
 
 </div>
