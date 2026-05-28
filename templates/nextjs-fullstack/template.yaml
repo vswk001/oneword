@@ -1,0 +1,23 @@
+name: nextjs-fullstack
+display: "Next.js Fullstack"
+description: "Full-stack application with server-side rendering, API routes, and real-time capabilities"
+suitable_for:
+  - "Apps requiring SEO and server-side rendering"
+  - "Real-time applications with live updates"
+  - "Chat applications and notification systems"
+  - "Content-heavy web applications"
+tech:
+  frontend: React + Next.js + TypeScript + Tailwind CSS
+  backend: Next.js API Routes + TypeScript
+  database: SQLite (development)
+  orm: Prisma
+  testing: Jest + Playwright
+  build: Next.js
+  lint: ESLint + Prettier
+commands:
+  install: npm install
+  dev: npm run dev
+  build: npm run build
+  test: npm test
+  lint: npm run lint
+  start: npm start
