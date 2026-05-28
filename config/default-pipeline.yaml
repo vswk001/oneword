@@ -1,0 +1,57 @@
+pipeline:
+  steps:
+    - name: analyze
+      skill: oneword-analyze
+      output: .oneword/requirements.md
+    - name: techstack
+      skill: oneword-techstack
+      input: .oneword/requirements.md
+      output: .oneword/tech-stack.md
+    - name: usecases
+      skill: oneword-usecases
+      input: [.oneword/requirements.md, .oneword/tech-stack.md]
+      output: .oneword/use-cases.md
+    - name: design
+      skill: oneword-design
+      input: [.oneword/requirements.md, .oneword/use-cases.md, .oneword/tech-stack.md]
+      output: .oneword/design.md
+    - name: code
+      skill: oneword-code
+      input: [.oneword/design.md, .oneword/use-cases.md, .oneword/tech-stack.md]
+      output: [src/, tests/unit/, tests/integration/]
+    - name: e2e
+      skill: oneword-e2e
+      input: [.oneword/use-cases.md, .oneword/tech-stack.md]
+      output: tests/e2e/
+    - name: verify
+      skill: oneword-verify
+      input: [.oneword/tech-stack.md]
+      output: .oneword/test-report.md
+      max_retries: 3
+    - name: deliver
+      skill: oneword-deliver
+      input: [.oneword/requirements.md, .oneword/tech-stack.md, .oneword/test-report.md]
+      output: README.md
+
+matching_rules:
+  - condition: "requirement matches /real-time|chat|notification|live/i"
+    prefer: nextjs-fullstack
+  - condition: "requirement matches /data analysis|report|machine learning|AI|predict/i"
+    prefer: vue-python
+  - condition: "requirement matches /lightweight|simple API|micro/i"
+    prefer: react-flask
+  - condition: "default"
+    prefer: react-node
+
+failure_policy:
+  doc_stages: [analyze, usecases, design]
+  doc_max_retries: 1
+  fallback_template: react-node
+  verify_max_retries: 3
+
+quality_gates:
+  test_pass_rate: 100
+  test_coverage_min: 80
+  lint_pass: true
+  build_pass: true
+  startup_pass: true
