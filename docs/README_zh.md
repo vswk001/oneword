@@ -55,27 +55,18 @@ OneWord 在幕后运行一整套**专业软件工程流水线**——需求分�
 
 ### 安装
 
-**一行命令安装（推荐）：**
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/vswk001/oneword/master/install.sh | bash
-```
-
-**手动选择平台：**
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/vswk001/oneword/master/install.sh | bash -s -- --platform claude-code
-curl -fsSL https://raw.githubusercontent.com/vswk001/oneword/master/install.sh | bash -s -- --platform codex
-curl -fsSL https://raw.githubusercontent.com/vswk001/oneword/master/install.sh | bash -s -- --platform cursor
-curl -fsSL https://raw.githubusercontent.com/vswk001/oneword/master/install.sh | bash -s -- --platform opencode
-```
-
-**从源码安装：**
-
 ```bash
 git clone https://github.com/vswk001/oneword.git
 cd oneword
+
+# 自动检测平台
+bash install.sh
+
+# 或手动指定平台
 bash install.sh --platform claude-code
+bash install.sh --platform codex
+bash install.sh --platform cursor
+bash install.sh --platform opencode
 ```
 
 ### 使用
