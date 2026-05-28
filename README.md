@@ -59,16 +59,16 @@ You: "I want a bookkeeping app"
 **One-liner install (recommended):**
 
 ```bash
-curl -fsSL https://oneword.dev/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/oneword-dev/oneword/main/install.sh | bash
 ```
 
 **Manual platform selection:**
 
 ```bash
-curl -fsSL https://oneword.dev/install.sh | bash -s -- --platform claude-code
-curl -fsSL https://oneword.dev/install.sh | bash -s -- --platform codex
-curl -fsSL https://oneword.dev/install.sh | bash -s -- --platform cursor
-curl -fsSL https://oneword.dev/install.sh | bash -s -- --platform opencode
+curl -fsSL https://raw.githubusercontent.com/oneword-dev/oneword/main/install.sh | bash -s -- --platform claude-code
+curl -fsSL https://raw.githubusercontent.com/oneword-dev/oneword/main/install.sh | bash -s -- --platform codex
+curl -fsSL https://raw.githubusercontent.com/oneword-dev/oneword/main/install.sh | bash -s -- --platform cursor
+curl -fsSL https://raw.githubusercontent.com/oneword-dev/oneword/main/install.sh | bash -s -- --platform opencode
 ```
 
 **Install from source:**
