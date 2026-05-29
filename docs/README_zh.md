@@ -64,7 +64,7 @@ curl -fsSL https://raw.githubusercontent.com/vswk001/oneword/main/install.sh | b
 **Windows (PowerShell)：**
 
 ```powershell
-iwr https://raw.githubusercontent.com/vswk001/oneword/main/install.ps1 | iex
+irm https://raw.githubusercontent.com/vswk001/oneword/main/install.ps1 | iex
 ```
 
 **手动指定平台：**
