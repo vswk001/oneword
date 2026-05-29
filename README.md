@@ -56,22 +56,21 @@ You: "I want a bookkeeping app"
 
 ### Install
 
-**One-liner (recommended):**
+**macOS / Linux:**
 
 ```bash
-npx skills add vswk001/oneword -a claude-code
+curl -fsSL https://raw.githubusercontent.com/vswk001/oneword/main/install.sh | bash
 ```
 
-**Or install from source:**
+**Windows (PowerShell):**
+
+```powershell
+iwr https://raw.githubusercontent.com/vswk001/oneword/main/install.ps1 | iex
+```
+
+**Manual platform selection:**
 
 ```bash
-git clone https://github.com/vswk001/oneword.git
-cd oneword
-
-# Auto-detect platform
-bash install.sh
-
-# Or specify platform manually
 bash install.sh --platform claude-code
 # or: codex, cursor, opencode
 ```
