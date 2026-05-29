@@ -10,8 +10,10 @@ echo "Installing OneWord skills for Claude Code..."
 mkdir -p "$TARGET"
 
 for skill in "$ONEWORD_ROOT"/skills/oneword-*.md; do
-  name=$(basename "$skill")
-  cp "$skill" "$TARGET/$name"
+  name=$(basename "$skill" .md)
+  skill_dir="$TARGET/$name"
+  mkdir -p "$skill_dir"
+  cp "$skill" "$skill_dir/SKILL.md"
   echo "  Installed: $name"
 done
 

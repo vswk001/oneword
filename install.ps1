@@ -42,8 +42,11 @@ switch ($Platform) {
         $Target = Join-Path $env:USERPROFILE ".claude\skills"
         New-Item -ItemType Directory -Force -Path $Target | Out-Null
         Get-ChildItem -Path "$ONEWORD_ROOT\skills\oneword-*.md" | ForEach-Object {
-            Copy-Item $_.FullName -Destination $Target
-            Write-Host "  Installed: $($_.Name)"
+            $name = $_.BaseName
+            $skillDir = Join-Path $Target $name
+            New-Item -ItemType Directory -Force -Path $skillDir | Out-Null
+            Copy-Item $_.FullName -Destination (Join-Path $skillDir "SKILL.md")
+            Write-Host "  Installed: $name"
         }
         Write-Host ""
         Write-Host "OneWord installed for Claude Code!"
