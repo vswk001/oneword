@@ -61,10 +61,12 @@ OneWord 在幕后运行一整套**专业软件工程流水线**——需求分�
 curl -fsSL https://raw.githubusercontent.com/vswk001/oneword/main/install.sh | bash
 ```
 
-**Windows (PowerShell)：**
+**Windows：**
 
 ```powershell
-irm https://raw.githubusercontent.com/vswk001/oneword/main/install.ps1 | iex
+git clone https://github.com/vswk001/oneword.git
+cd oneword
+powershell -File install.ps1 --platform claude-code
 ```
 
 **手动指定平台：**

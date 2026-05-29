@@ -62,10 +62,12 @@ You: "I want a bookkeeping app"
 curl -fsSL https://raw.githubusercontent.com/vswk001/oneword/main/install.sh | bash
 ```
 
-**Windows (PowerShell):**
+**Windows:**
 
 ```powershell
-irm https://raw.githubusercontent.com/vswk001/oneword/main/install.ps1 | iex
+git clone https://github.com/vswk001/oneword.git
+cd oneword
+powershell -File install.ps1 --platform claude-code
 ```
 
 **Manual platform selection:**
