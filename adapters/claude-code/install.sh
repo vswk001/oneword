@@ -5,8 +5,12 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ONEWORD_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
 TARGET="$HOME/.claude/skills"
 
+# shellcheck source=../common.sh
+source "$SCRIPT_DIR/../common.sh"
+
 echo "Installing OneWord skills for Claude Code..."
 
+install_shared_bundle
 mkdir -p "$TARGET"
 
 for skill in "$ONEWORD_ROOT"/skills/oneword-*.md; do
