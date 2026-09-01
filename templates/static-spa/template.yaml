@@ -1,0 +1,22 @@
+name: static-spa
+display: "Static Single-Page App"
+description: "Pure frontend single-page application — no backend server, build output can be hosted anywhere"
+suitable_for:
+  - "Landing pages and portfolios"
+  - "Brochures and showcase sites"
+  - "Simple client-only tools and calculators"
+  - "Content that needs free static hosting"
+tech:
+  frontend: React + TypeScript + Tailwind CSS
+  backend: none
+  database: Browser localStorage (client-side only)
+  testing: Vitest + Playwright
+  build: Vite
+  lint: ESLint
+commands:
+  install: npm install
+  dev: npm run dev
+  build: npm run build
+  test: npm test
+  lint: npm run lint
+  start: npm start

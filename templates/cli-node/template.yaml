@@ -1,0 +1,22 @@
+name: cli-node
+display: "Node.js CLI"
+description: "Command-line tool with subcommands, argument parsing, and unit tests — no web UI"
+suitable_for:
+  - "Command-line tools and utilities"
+  - "Automation and batch scripts"
+  - "File processing (rename, convert, organize)"
+  - "Crawlers and scheduled tasks"
+tech:
+  frontend: none
+  backend: Node.js + TypeScript + Commander
+  database: JSON file storage (zero-config, data/ directory)
+  testing: Jest
+  build: tsc
+  lint: ESLint
+commands:
+  install: npm install
+  dev: npm run dev
+  build: npm run build
+  test: npm test
+  lint: npm run lint
+  start: npm start
