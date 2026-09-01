@@ -9,8 +9,7 @@ suitable_for:
 tech:
   frontend: React + Next.js + TypeScript + Tailwind CSS
   backend: Next.js API Routes + TypeScript
-  database: SQLite (development)
-  orm: Prisma
+  database: JSON file storage (zero-config, data/ directory)
   testing: Jest + Playwright
   build: Next.js
   lint: ESLint + Prettier

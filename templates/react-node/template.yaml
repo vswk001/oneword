@@ -9,8 +9,7 @@ suitable_for:
 tech:
   frontend: React + TypeScript + Tailwind CSS
   backend: Node.js + Express + TypeScript
-  database: SQLite (development)
-  orm: Prisma
+  database: JSON file storage (zero-config, data/ directory)
   testing: Jest + Playwright
   build: Vite
   lint: ESLint + Prettier

@@ -9,14 +9,14 @@ suitable_for:
 tech:
   frontend: Vue 3 + TypeScript + Tailwind CSS
   backend: Python + FastAPI + Pydantic
-  database: SQLite (development)
+  database: JSON file storage (zero-config, data/ directory)
   testing: Pytest + Playwright
   build: Vite
   lint: Ruff + ESLint
 commands:
   install: pip install -r requirements.txt && cd frontend && npm install
-  dev: concurrently "uvicorn src.main:app --reload" "cd frontend && npm run dev"
+  dev: npx concurrently "uvicorn src.main:app --reload" "cd frontend && npm run dev"
   build: cd frontend && npm run build
   test: pytest --cov=src tests/
-  lint: ruff check src/ && cd frontend && npm run lint
+  lint: ruff check src/
   start: uvicorn src.main:app

@@ -13,8 +13,8 @@
     "test": "jest --coverage",
     "test:watch": "jest --watch",
     "test:e2e": "npx playwright test",
-    "lint": "eslint 'src/**/*.ts' 'frontend/src/**/*.{ts,tsx}'",
-    "lint:fix": "eslint 'src/**/*.ts' 'frontend/src/**/*.{ts,tsx}' --fix"
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "express": "^4.21.0",
