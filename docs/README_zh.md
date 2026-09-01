@@ -1,4 +1,4 @@
-[![English](https://img.shields.io/badge/lang-English-blue.svg)](../README.md) [![中文](https://img.shields.io/badge/lang-中文-red.svg)](docs/README_zh.md) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](../LICENSE) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](../CONTRIBUTING.md)
+[![English](https://img.shields.io/badge/lang-English-blue.svg)](../README.md) [![中文](https://img.shields.io/badge/lang-中文-red.svg)](docs/README_zh.md) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](../LICENSE) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](../CONTRIBUTING.md) [![CI](https://github.com/vswk001/oneword/actions/workflows/ci.yml/badge.svg)](https://github.com/vswk001/oneword/actions/workflows/ci.yml)
 
 <div align="center">
 
@@ -18,9 +18,11 @@
 
 你有一个想法，但你不会写代码。这不应该是阻碍。
 
-OneWord 在幕后运行一整套**专业软件工程流水线**——需求分析、用例设计、详细设计、测试驱动开发、自动化测试、质量验证——全部由一句话触发。
+OneWord 在幕后运行一整套**专业软件工程流水线**——需求分析、用例设计、详细设计、测试驱动开发、自动化测试、质量与安全验证——全部由一句话触发。
 
 **不提问。不配置。不需要技术知识。**
+
+而且不止于第一版：一句话**迭代修改**、中断后**断点续跑**、开工前**环境体检**。
 
 ## 工作原理
 
@@ -36,7 +38,7 @@ OneWord 在幕后运行一整套**专业软件工程流水线**——需求分�
     │  4. 详细设计           │
     │  5. TDD 编码           │
     │  6. E2E 测试           │
-    │  7. 质量验证           │
+    │  7. 质量与安全门禁      │
     │  8. 应用交付           │
     │                       │
     └───────────┬───────────┘
@@ -51,7 +53,8 @@ OneWord 在幕后运行一整套**专业软件工程流水线**——需求分�
 ### 前置条件
 
 - 已安装 AI 编程工具（Claude Code、Codex CLI、Cursor 或 OpenCode）
-- Node.js 18+（用于生成的项目）
+- Node.js 18+（用于生成的项目）；数据分析/AI 类应用需要 Python 3.11+
+- git（一行命令安装时需要）
 
 ### 安装
 
@@ -74,6 +77,15 @@ bash install.sh --platform claude-code
 # 或：codex, cursor, opencode
 ```
 
+安装器会把技能放到 AI 工具的对应目录，并把共享资源（项目模板 + 流水线配置）安装到 `~/.oneword/`（Windows 为 `%USERPROFILE%\.oneword\`）。
+
+**卸载 / 查看版本：**
+
+```bash
+bash uninstall.sh            # 移除技能 + 共享资源（所有平台）
+cat ~/.oneword/VERSION       # 已安装版本
+```
+
 ### 使用
 
 ```bash
@@ -92,6 +104,16 @@ oneword-build 我想做一个记账应用
 
 就这么简单。你的应用会在当前目录下生成，开箱即用。
 
+**首次生成之后：**
+
+```bash
+/oneword-iterate 给记录页面加一个 CSV 导出   # 迭代修改已有应用
+/oneword-resume                              # 续跑中断的构建（或查看进度）
+/oneword-doctor                              # 用大白话体检运行环境
+```
+
+用中文提需求，生成的 README 和最终说明就是中文——输出语言始终跟随你的输入语言。
+
 ## 支持平台
 
 | 平台 | 调用方式 | 安装位置 |
@@ -101,12 +123,16 @@ oneword-build 我想做一个记账应用
 | **Cursor** | `@oneword-build <需求>` | `.cursor/rules/` |
 | **OpenCode** | `/oneword-build <需求>` | `commands/` |
 
+所有平台都会在 `~/.oneword/` 安装共享资源（模板 + 配置）。
+
 ## 技术栈自动选择
 
 OneWord 会分析你的需求，自动选择最合适的技术方案：
 
 | 需求类型 | 技术栈 | 模板 |
 |---------|--------|------|
+| 命令行工具、脚本、自动化 | Node.js + TypeScript + Commander | `cli-node` |
+| 落地页、作品集、纯展示站 | React + Vite（无后端） | `static-spa` |
 | 通用应用 | React + Node.js + TypeScript | `react-node` |
 | 实时通信、SEO、SSR | Next.js 15 + TypeScript | `nextjs-fullstack` |
 | 数据分析、AI 相关 | Vue 3 + Python FastAPI | `vue-python` |
@@ -114,11 +140,23 @@ OneWord 会分析你的需求，自动选择最合适的技术方案：
 
 每个生成的项目都包含：
 
-- TypeScript（或 Python）后端，遵循整洁架构
-- 现代化前端，使用 Tailwind CSS
-- Jest + Playwright 测试套件
-- ESLint / Pylint 代码规范配置
+- TypeScript（或 Python）后端，遵循整洁架构（有后端时）
+- 现代化前端，使用 Tailwind CSS（有界面时）
+- 单元 + E2E 测试套件（Jest/Vitest/Pytest + Playwright）
+- 代码规范检查（ESLint / Ruff）、依赖安全审计、80% 覆盖率阈值
+- `.gitignore`、`.env.example`，以及用你的语言写的 README
 - 一键启动：`npm install && npm start`
+
+## 质量与安全门禁
+
+交付前，每次构建都必须通过（`oneword-verify`）：
+
+- 100% 测试通过，可度量处覆盖率 ≥ 80%
+- Lint 和生产构建通过
+- 应用启动并在 10 秒内响应
+- `npm audit` 无高危/严重漏洞、无硬编码密钥、`.env` 已被 gitignore、服务默认只监听本机
+
+失败会在受限的重试循环内自动修复；结构性问题触发范围可控的修复模式重跑，而不是推倒重来。
 
 ## 插件系统
 
@@ -146,19 +184,22 @@ skills/
 ├── oneword-techstack.md    # 技术选型 → tech-stack.md
 ├── oneword-usecases.md     # 用例设计 → use-cases.md
 ├── oneword-design.md       # 详细设计 → design.md
-├── oneword-code.md         # TDD 编码 → src/ + tests/
+├── oneword-code.md         # TDD 编码 → src/ + tests/（含修复模式）
 ├── oneword-e2e.md          # E2E 测试 → tests/e2e/
-├── oneword-verify.md       # 质量门禁 → test-report.md
-└── oneword-deliver.md      # 应用交付 → README.md + 启动命令
+├── oneword-verify.md       # 质量与安全门禁 → test-report.md
+├── oneword-deliver.md      # 应用交付 → README.md + 启动命令
+├── oneword-iterate.md      # 迭代修改已生成的应用
+├── oneword-resume.md       # 断点续跑 / 查看构建进度
+└── oneword-doctor.md       # 环境预检
 ```
 
-每个技能都是纯 Markdown 指令文件——没有代码依赖，没有平台特定逻辑。平台适配器在安装时处理格式转换。
+每个技能都是纯 Markdown 指令文件——没有代码依赖，没有平台特定逻辑。编排器按顺序逐个读取并遵循技能文件，因此技能链在所有支持平台上行为一致。平台适配器在安装时处理格式转换。
 
 ## 路线图
 
 - [x] **v0.1** — 核心流水线：8 个技能、4 个模板、4 个平台
-- [ ] **v0.2** — 自动修复增强、更多模板（Vue + Node、Svelte）
-- [ ] **v0.3** — 插件系统，支持 CLI 安装
+- [x] **v0.2** — 迭代/续跑/体检技能、CLI 与静态站模板、安全门禁、安装/卸载/版本管理、CI
+- [ ] **v0.3** — 插件系统，支持 CLI 安装，更多模板（Svelte、Vue + Node、移动端）
 - [ ] **v1.0** — 插件市场、社区模板、文档站
 
 ## 参与贡献
@@ -171,11 +212,11 @@ skills/
 4. 推送到分支（`git push origin feat/my-feature`）
 5. 发起 Pull Request
 
-详细指南请参考 [CONTRIBUTING.md](CONTRIBUTING.md)。
+CI 会运行 Markdown 围栏检查、YAML 校验和每个模板的构建/测试冒烟——PR 必须全部通过。详细指南请参考 [CONTRIBUTING.md](CONTRIBUTING.md)。
 
 ## 开源许可
 
-OneWord 采用 [MIT 许可证](LICENSE) 开源。
+OneWord 采用 [MIT 许可证](../LICENSE) 开源。
 
 ## 致谢
 

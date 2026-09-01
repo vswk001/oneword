@@ -42,6 +42,22 @@ Use [Conventional Commits](https://www.conventionalcommits.org/):
 - Follow existing patterns in the codebase
 - Keep skills as pure markdown instruction files
 - Templates must be runnable out of the box (`npm install && npm start`)
+- Every template directory must contain a `template.yaml` manifest
+
+### Before Opening a PR
+
+Run the local checks (CI runs the same):
+
+```bash
+bash scripts/check-markdown.sh   # balanced code fences + template manifests
+```
+
+If you changed install scripts or templates, also smoke-test locally:
+
+```bash
+bash install.sh --platform claude-code   # then check ~/.claude/skills and ~/.oneword
+cp -r templates/<your-template> /tmp/app && cd /tmp/app && npm install && npm run build && npm test
+```
 
 ### Questions?
 

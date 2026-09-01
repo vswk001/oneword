@@ -1,0 +1,81 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  lint:
+    name: Markdown / YAML / Shell checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check markdown fences and template manifests
+        run: bash scripts/check-markdown.sh
+
+      - name: Validate YAML files
+        run: |
+          python3 - << 'EOF'
+          import glob, sys
+          try:
+              import yaml
+          except ImportError:
+              sys.exit("PyYAML not available")
+          files = glob.glob("config/*.yaml") + glob.glob("templates/*/template.yaml") + [".github/workflows/ci.yml"]
+          for f in files:
+              with open(f, encoding="utf-8") as fh:
+                  yaml.safe_load(fh)
+              print(f"OK: {f}")
+          print(f"Validated {len(files)} YAML files")
+          EOF
+
+      - name: Shellcheck install scripts
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq shellcheck
+          shellcheck install.sh uninstall.sh adapters/*.sh scripts/*.sh
+
+  template-smoke:
+    name: Template smoke (${{ matrix.template }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        template: [react-node, nextjs-fullstack, cli-node, static-spa, vue-python, react-flask]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - uses: actions/setup-python@v5
+        if: matrix.template == 'vue-python' || matrix.template == 'react-flask'
+        with:
+          python-version: "3.12"
+
+      - name: Prepare template copy
+        run: |
+          cp -r "templates/${{ matrix.template }}" app
+          # .gitignore would block nothing here, but README placeholder is part of the template
+          ls -la app
+
+      - name: Node smoke — install, lint, build, test
+        if: matrix.template != 'vue-python' && matrix.template != 'react-flask'
+        working-directory: app
+        run: |
+          npm install
+          if [ -d frontend ]; then (cd frontend && npm install); fi
+          npm run lint --if-present
+          npm run build
+          npm test
+
+      - name: Python smoke — install, lint, test, build frontend
+        if: matrix.template == 'vue-python' || matrix.template == 'react-flask'
+        working-directory: app
+        run: |
+          pip install -r requirements.txt
+          ruff check src/ tests/
+          pytest --cov=src tests/
+          (cd frontend && npm install && npm run build)
