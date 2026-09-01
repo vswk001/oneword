@@ -60,4 +60,3 @@ Write the result to `.oneword/use-cases.md`:
 | F1: [Feature name] | UC-01 | High |
 | ... | ... | ... |
 ```
-```

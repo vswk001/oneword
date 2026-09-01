@@ -1,6 +1,6 @@
 ---
 name: oneword-code
-description: Implements the application using TDD practice — test first, then implement, then refactor, per module. Reads design doc and produces source code + unit/integration tests.
+description: Implements the application using TDD practice — test first, then implement, then refactor, per module. Reads design doc and produces source code + unit/integration tests. Supports a fix mode for post-verification repairs.
 ---
 
 # OneWord Code - Implementation with TDD
@@ -16,14 +16,25 @@ Read these files in order:
 
 ## Step 0: Initialize Project from Template
 
-Copy the selected template directory into the project root:
+Locate the selected template directory. Search in order:
+1. `~/.oneword/templates/<selected-template>/` (standard install; on Windows `%USERPROFILE%\.oneword\templates\...`)
+2. `templates/<selected-template>/` relative to the current directory (repo checkout)
+
+If neither exists, stop and report: "Project templates are missing — reinstall OneWord (`bash install.sh` or `irm <url> | iex`)."
+
+Copy the template contents into the project root (do NOT overwrite files that already exist from earlier steps, e.g. `.oneword/`):
+
 ```bash
-cp -r templates/<selected-template>/* .
+cp -rn ~/.oneword/templates/<selected-template>/. .
 ```
 
+PowerShell equivalent: `Copy-Item -Recurse -Force "$env:USERPROFILE\.oneword\templates\<selected-template>\*" .`
+
 Then install dependencies:
+
 ```bash
-npm install  # or pip install -r requirements.txt for Python templates
+npm install  # or: cd frontend && npm install, for split-frontend templates
+pip install -r requirements.txt  # for Python templates
 ```
 
 ## TDD Implementation Cycle
@@ -59,6 +70,16 @@ Once the test passes:
 
 Move to the next test case for this module. When all tests pass, move to the next module.
 
+## Fix Mode
+
+You may be re-invoked by the orchestrator AFTER `oneword-verify` reported structural failures (missing module, wrong architecture, feature not implemented). In fix mode:
+
+1. Read `.oneword/test-report.md` — focus on the "Remaining Issues" section.
+2. Read `.oneword/design.md` for the intended structure — fix toward the design, not away from it.
+3. Make targeted repairs only. Do NOT rewrite from scratch, do NOT rename modules wholesale, do NOT delete passing tests.
+4. Fix the source code by default. Only change a test when the test itself contradicts `use-cases.md` acceptance criteria.
+5. Re-run the previously failing tests to confirm the repair, then stop — `oneword-verify` will re-run the full gate.
+
 ## Coding Standards
 
 - **Clean Code**: Meaningful names, small functions, no side effects in pure functions
@@ -66,6 +87,7 @@ Move to the next test case for this module. When all tests pass, move to the nex
 - **Error Handling**: Validate at system boundaries (user input, external APIs). Trust internal code.
 - **No Comments**: Code should be self-documenting. Only add comments for non-obvious WHY.
 - **No YAGNI**: Don't add features not in the design. Don't over-abstract.
+- **Data Persistence**: Follow design.md. For MVP scope the default is a zero-config JSON file store (`data/` directory, gitignored); only introduce a real database when design.md explicitly specifies one and the template supports it.
 
 ## Output
 

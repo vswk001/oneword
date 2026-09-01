@@ -1,3 +1,12 @@
+# OneWord default pipeline definition.
+#
+# Installed to ~/.oneword/config/ by the installers and read by the skills:
+#   - oneword-verify reads quality_gates (embedded defaults apply if this file is absent)
+#
+# NOTE on template matching: the single source of truth for matching rules is
+# skills/oneword-techstack.md ("Matching Rules" section) — do NOT duplicate them
+# here; duplicated rule lists drift apart over time.
+
 pipeline:
   steps:
     - name: analyze
@@ -27,31 +36,28 @@ pipeline:
       skill: oneword-verify
       input: [.oneword/tech-stack.md]
       output: .oneword/test-report.md
-      max_retries: 3
     - name: deliver
       skill: oneword-deliver
       input: [.oneword/requirements.md, .oneword/tech-stack.md, .oneword/test-report.md]
       output: README.md
 
-matching_rules:
-  - condition: "requirement matches /real-time|chat|notification|live/i"
-    prefer: nextjs-fullstack
-  - condition: "requirement matches /data analysis|report|machine learning|AI|predict/i"
-    prefer: vue-python
-  - condition: "requirement matches /lightweight|simple API|micro/i"
-    prefer: react-flask
-  - condition: "default"
-    prefer: react-node
+# Entry-point skills that live outside the linear pipeline:
+#   oneword-iterate — incremental change requests on a finished app
+#   oneword-resume  — resume an interrupted build / report status
+#   oneword-doctor  — environment pre-flight check
 
 failure_policy:
   doc_stages: [analyze, usecases, design]
   doc_max_retries: 1
   fallback_template: react-node
-  verify_max_retries: 3
+  # Two retry layers, see skills/oneword-build.md "Retry semantics":
+  verify_test_level_retries: 3   # inside oneword-verify's auto-fix loop
+  verify_structural_retries: 1   # orchestrator re-runs oneword-code in fix mode
 
 quality_gates:
   test_pass_rate: 100
-  test_coverage_min: 80
+  test_coverage_min: 80          # enforced where coverage tooling exists; otherwise N/A
   lint_pass: true
   build_pass: true
   startup_pass: true
+  security_audit: high           # fail on HIGH/CRITICAL dependency advisories & hardcoded secrets

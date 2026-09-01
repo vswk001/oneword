@@ -24,6 +24,8 @@ Read `.oneword/use-cases.md` and `.oneword/tech-stack.md`.
 2. For each path, write an E2E test that simulates the full user flow
 3. Each test: navigate → interact → assert result
 
+**Browser prerequisite**: before writing/running tests, ensure Playwright browsers are present — `npx playwright install chromium` (fast, single-browser). Without this, the first E2E run fails on a fresh machine.
+
 ## Test Structure
 
 ```
@@ -46,4 +48,3 @@ test.describe('[Feature Name]', () => {
 ```
 
 **Important**: Start the application server before running E2E tests. The test config (playwright.config.ts) should handle this via `webServer` config.
-```

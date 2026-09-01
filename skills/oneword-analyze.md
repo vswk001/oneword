@@ -16,6 +16,7 @@ Read the user's original requirement from `.oneword/progress.json` (field: `inpu
 - Do NOT ask the user any questions. Make reasonable assumptions.
 - When the requirement is ambiguous, choose the **minimum viable scope**. Example: "bookkeeping app" = single user, local storage, basic CRUD — NOT multi-user, cloud, real-time collaboration.
 - The output must be specific enough to directly inform design and coding. No vague statements.
+- Write the document in English (pipeline-internal language), regardless of the user's input language. Record the user's input language in a dedicated line so later stages can localize user-facing output.
 
 ## Process
 
@@ -31,6 +32,8 @@ Write the result to `.oneword/requirements.md` using this exact structure:
 
 ```markdown
 # Requirements: [Project Name]
+
+> User input language: [en / zh / ...] — the final README and terminal summary must use this language.
 
 ## Project Goal
 [One paragraph: what this project does, who it's for, and what value it provides]

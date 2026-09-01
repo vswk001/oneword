@@ -88,13 +88,3 @@ App
 ...
 [Order should enable TDD: each module can be tested as it's built]
 ```
-```
-
-Then commit:
-```bash
-cd D:\workspace\oneword
-git add skills/oneword-design.md
-git commit -m "feat: add detailed design skill (oneword-design)"
-```
-
-Report: Status, files changed.
