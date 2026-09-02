@@ -30,4 +30,5 @@ if [ "$fail" -ne 0 ]; then
 fi
 
 echo "Markdown fence check: OK ($(find "$REPO_ROOT" -name '*.md' -not -path '*/node_modules/*' | wc -l | tr -d ' ') files)"
-echo "Template manifest check: OK ($(ls -d "$REPO_ROOT"/templates/*/ | wc -l | tr -d ' ') templates)"
+template_count=$(find "$REPO_ROOT/templates" -mindepth 1 -maxdepth 1 -type d | wc -l | tr -d ' ')
+echo "Template manifest check: OK (${template_count} templates)"

@@ -24,6 +24,7 @@ install_shared_bundle() {
     cp "$ONEWORD_ROOT/VERSION" "$ONEWORD_HOME/VERSION"
   fi
 
-  echo "  Installed: templates/ ($(ls "$ONEWORD_HOME/templates" | wc -l | tr -d ' ') templates)"
+  template_count=$(find "$ONEWORD_HOME/templates" -mindepth 1 -maxdepth 1 -type d | wc -l | tr -d ' ')
+  echo "  Installed: templates/ (${template_count} templates)"
   echo "  Installed: config/default-pipeline.yaml"
 }
